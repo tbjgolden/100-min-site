@@ -16,6 +16,8 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #222;
+        -webkit-text-decoration-skip: ink;
+        text-decoration-skip: ink;
       }
 
       :first-child {
@@ -51,6 +53,31 @@
         margin: 0 auto;
       }
 
+      .links-container {
+        margin: 0;
+        padding: 1em 0;
+      }
+
+      .links-container a[href] {
+        text-decoration: none;
+        display: inline-block;
+        white-space: pre;
+        position: relative;
+        overflow-y: visible;
+        font-weight: bold;
+      }
+      
+      .links-container a[href]:hover:after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+      }
+
       .blog-post {
         padding: 32px 0;
       }
@@ -63,6 +90,12 @@
   <body>
     <div class="page-container">
       <h1>Tom Golden</h1>
+      <div class="">
+        <hr />
+        <p class="links-container">
+          <a href="">LinkedIn</a>&nbsp;&nbsp;&mdash;&nbsp; <a href="">Github</a>&nbsp;&nbsp;&mdash;&nbsp; <a href="">Email</a>
+        </p>
+      </div>
       <hr />
       <p>
         This blog runs client-side. Go figure.
