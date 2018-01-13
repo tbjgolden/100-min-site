@@ -1,15 +1,82 @@
 <!doctype html>
 <html>
   <head>
+    <title>Tom Golden</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:400i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #222;
+      }
+
+      :first-child {
+        margin-top: 0;
+      }
+      :last-child {
+        margin-bottom: 0;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display SC', serif;
+        letter-spacing: -.04ex;
+        font-weight: 400;
+        font-style: italic;
+        font-variant-ligatures: none;
+      }
+
+      p {
+        font-weight: 400;
+        font-family: 'Playfair Display', serif;
+      }
+
+      hr {
+        border-bottom: 1px solid #eee;
+        border-top: 1px solid #ddd;
+        margin: 0 -24px;
+      }
+
+      .page-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 48px;
+        margin: 0 auto;
+      }
+
+      .blog-post {
+        padding: 32px 0;
+      }
+      .blog-post:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    </style>
   </head>
   <body>
-
+    <div class="page-container">
+      <h1>Tom Golden</h1>
+      <hr />
+      <p>
+        This blog runs client-side. Go figure.
+      </p>
+      <hr />
+      <div id="blog-container"></div>
+    </div>
   </body>
   <script src="//cdn.rawgit.com/tbjgolden/nicemark/50d4344f/nicemark.min.js"></script>
   <script>
     const numberOfPosts = 2;
     let numberLeft = numberOfPosts;
     const posts = [];
+    const blogContainerEl = document.querySelector('#blog-container');
 
     for (let i = 0; i < numberOfPosts; i++) {
       getAjax(
@@ -19,10 +86,18 @@
           const xmd = rest.join('\n');
           posts[i] = { title, date, xmd, html: nicemark(xmd) };
           if (!--numberLeft) {
-            console.log('got them all', posts);
+            generateBlog(posts);
           }
         }
       )
+    }
+
+    function generateBlog (posts) {
+      blogContainerEl.innerHTML = posts.map(generateBlogPost).join('<hr />');
+    }
+
+    function generateBlogPost (post) {
+      return `<article class="blog-post">${post.html}</article>`;
     }
 
     function getAjax(url, success, failure = res => { throw new Error(res) }) {
