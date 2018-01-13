@@ -103,7 +103,7 @@
         <p class="links-container">
           <a href="https://linkedin.com/in/tbjgolden">LinkedIn</a>&nbsp;&nbsp;&mdash;&nbsp;
           <a href="https://github.com/tbjgolden">Github</a>&nbsp;&nbsp;&mdash;&nbsp;
-          <a href="mailto:tbjgolden@gmail.com">Email</a>
+          <a href="javascript:window.location.href=mangle('moc.liamg@nedlogjbt:otliam')">Email</a>
         </p>
       </div>
       <hr />
@@ -164,6 +164,10 @@
       } catch (e) {
         failure(`Caught error: ${e.message}`);
       }
+    }
+
+    function mangle (link) {
+      return link.split('').reverse().join('');
     }
   </script>
 </html>
