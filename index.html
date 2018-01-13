@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Tom Golden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:400i" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet" />
     <style>
@@ -46,6 +47,10 @@
         margin: 0 -24px;
       }
 
+      #page-title {
+        font-size: 1.5em;
+      }
+
       .page-container {
         max-width: 800px;
         width: 100%;
@@ -85,12 +90,15 @@
         padding-bottom: 0;
         border-bottom: none;
       }
+      .blog-post-title {
+        font-size: 2em;
+      }
     </style>
   </head>
   <body>
     <div class="page-container">
-      <h1>Tom Golden</h1>
-      <div class="">
+      <h1 id="page-title">Tom Golden</h1>
+      <div>
         <hr />
         <p class="links-container">
           <a href="https://linkedin.com/in/tbjgolden">LinkedIn</a>&nbsp;&nbsp;&mdash;&nbsp;
@@ -115,11 +123,11 @@
 
     for (let i = 0; i < numberOfPosts; i++) {
       getAjax(
-        `/posts/${i}.xmd`,
+        `/posts/${i}.md`,
         res => {
           const [title, date, ...rest] = res.split('\n');
-          const xmd = rest.join('\n');
-          posts[i] = { title, date, xmd, html: nicemark(xmd) };
+          const md = rest.join('\n');
+          posts[i] = { title, date, md, html: nicemark(md) };
           if (!--numberLeft) {
             generateBlog(posts);
           }
@@ -132,7 +140,13 @@
     }
 
     function generateBlogPost (post) {
-      return `<article class="blog-post">${post.html}</article>`;
+      return `
+        <article class="blog-post">
+          <h1 class="blog-post-title">${post.title}</h1>
+          <h5><code>Published on ${post.date}</code></h5>
+          ${post.html}
+        </article>
+      `;
     }
 
     function getAjax(url, success, failure = res => { throw new Error(res) }) {
