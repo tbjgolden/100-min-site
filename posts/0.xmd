@@ -1,6 +1,42 @@
-Some Title
+Why I quit Atom and went back to Sublime
 2018/01/12
 
-## This is a subtitle
+## Google Chrome
 
-This is *some* text.
+A wonderful browser. And impressively, it is still (no matter what people
+seem to say about new Firefox) the fastest browser available.
+
+It is lightning quick on Windows, Mac, Linux, and (surprise!) Chrome OS.
+
+But the RAM. Why does it use so much RAM?
+
+## How I learnt to worry about RAM and... ok this didn't work
+
+Solving the problem of turning all kinds of HTML, CSS and JS into
+a nice UI while supporting decades of less well-written and
+deprecated code is not simple.
+
+And JavaScript is far from an optimal programming language -
+I like it, but its relatively quick execution in modern day browsers
+come at the cost of heavy memory usage.
+The V8 engine sacrifices memory for speed.
+
+## Blah blah blah
+
+Slack complaints, Electron stuff, you know the drill.
+
+## Sublime is pretty native
+
+Sublime things
+
+## And they've started to release some Atom features
+
+Blah
+
+## Creating your own plugins is fun actually
+
+Cool
+
+## Speed comparisons
+
+images and stuff
